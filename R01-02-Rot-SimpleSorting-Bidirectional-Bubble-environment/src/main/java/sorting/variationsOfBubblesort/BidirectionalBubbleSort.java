@@ -15,6 +15,9 @@ public class BidirectionalBubbleSort<T extends Comparable<T>> extends
 
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
+		if (leftIndex >= rightIndex){
+			return;
+		}
 		boolean swapped = true;
 
 		while (swapped) {
