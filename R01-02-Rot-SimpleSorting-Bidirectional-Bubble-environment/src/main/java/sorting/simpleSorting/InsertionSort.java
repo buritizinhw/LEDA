@@ -19,8 +19,6 @@ public class InsertionSort<T extends Comparable<T>> extends AbstractSorting<T> {
         for (int i = leftIndex + 1; i <= rightIndex; i++) {
             T key = array[i];
             int j = i - 1;
-
-            // Move os elementos que são maiores que a chave para uma posição à frente de sua posição atual
             while (j >= leftIndex && array[j].compareTo(key) > 0) {
                 array[j + 1] = array[j];
                 j--;
