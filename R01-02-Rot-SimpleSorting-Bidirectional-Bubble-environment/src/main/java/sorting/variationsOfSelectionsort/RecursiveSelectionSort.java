@@ -22,17 +22,17 @@ public class RecursiveSelectionSort<T extends Comparable<T>> extends
 	}
 
 	private void recursiveSelectionSort(T[] array, int leftIndex, int rightIndex) {
-		if (!(leftIndex >= rightIndex)){
-			for (int i = leftIndex; i < rightIndex; i++) {
-				int minIndex = i;
-				for (int j = i + 1; j <= rightIndex; j++) {
-					if (array[j].compareTo(array[minIndex]) < 0) {
-						minIndex = j;
-					}
+		if (!(leftIndex >= rightIndex)) {
+			int minIndex = leftIndex;
+			for (int j = leftIndex + 1; j <= rightIndex; j++) {
+				if (array[j].compareTo(array[minIndex]) < 0) {
+					minIndex = j;
 				}
-				Util.swap(array, i, minIndex);
+			}
+			Util.swap(array,leftIndex, minIndex);
+			recursiveSelectionSort(array, leftIndex + 1, rightIndex);
 
 		}
-		}
+		
 	}
 }
