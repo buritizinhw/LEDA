@@ -1,4 +1,4 @@
-<h1 align="center">
+<h1 align="left">
   Laboratório de Estrutura de dados
 </h1>
 
