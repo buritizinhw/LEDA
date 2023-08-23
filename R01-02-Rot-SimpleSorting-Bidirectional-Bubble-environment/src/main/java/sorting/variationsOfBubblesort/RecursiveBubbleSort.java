@@ -22,7 +22,7 @@ public class RecursiveBubbleSort<T extends Comparable<T>> extends
 	}
 	private void recursiveBubbleSort(T[] array, int leftIndex,int rightIndex){
 		if (!(leftIndex >= rightIndex)) {
-            for(int i=0;i<rightIndex;i++){
+            for(int i=leftIndex;i<rightIndex;i++){
 				if(array[i].compareTo(array[i+1]) > 0){
 					Util.swap(array, i, i+1);
 				}
