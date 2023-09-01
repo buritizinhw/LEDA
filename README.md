@@ -9,5 +9,5 @@ Repositório para roteiros de avaliação da cadeira Laboratório de Estrutura d
   <li><a href = "https://github.com/buritizinhw/LEDA/tree/main/R03-02-Rot-Order-statistics-selection-environment">Roteiro 03: Estatística de ordem e Selection recursivo (prova antiga)</a></li>
   <li><a href="https://github.com/buritizinhw/LEDA/tree/main/R04-02-Rot-LinearSorting-Countingsort-environment">Roteiro 04: Ordenação em tempo linear (Couting, Bucket e Radix)</a></li>
   <li>Roteiro 05: Estatística de ordem e Binary Search </li>
-  <li>Roteiro 06: Estatística de ordem e Binary Search (prova antiga) </li>
+  <li><a href="https://github.com/buritizinhw/LEDA/tree/main/R06-02-Rot-BinarySearch-Raiz-environment">Roteiro 06: Estatística de ordem e Binary Search (prova antiga) </a></li>
 </ul>
