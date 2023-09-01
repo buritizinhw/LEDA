@@ -3,3 +3,9 @@
 </h1>
 
 Repositório para roteiros de avaliação da cadeira Laboratório de Estrutura de Dados e Algoritmos da UFCG.
+<ul>
+  <li>Roteiro 01</li>
+  <li>Roteiro 01</li>
+  <li>Roteiro 01</li>
+  <li>Roteiro 01</li>
+</ul>
