@@ -2,48 +2,58 @@ package adt.queue;
 
 public class QueueImpl<T> implements Queue<T> {
 
-	private T[] array;
-	private int tail;
+    private T[] array;
+    private int tail;
 
-	@SuppressWarnings("unchecked")
-	public QueueImpl(int size) {
-		array = (T[]) new Object[size];
-		tail = -1;
-	}
+    @SuppressWarnings("unchecked")
+    public QueueImpl(int size) {
+        array = (T[]) new Object[size];
+        tail = -1;
+    }
 
-	@Override
-	public T head() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
-	}
+    @Override
+    public T head() {
+        if (isEmpty()) {
+            return null;
+        }
+        return array[0];
+    }
 
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
-	}
+    @Override
+    public boolean isEmpty() {
+        return tail == -1;
+    }
 
-	@Override
-	public boolean isFull() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
-	}
+    @Override
+    public boolean isFull() {
+        return tail == array.length - 1;
+    }
 
-	private void shiftLeft() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
-	}
+    private void shiftLeft() {
+        for (int i = 0; i < tail; i++) {
+            array[i] = array[i + 1];
+        }
+    }
 
-	@Override
-	public void enqueue(T element) throws QueueOverflowException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
-	}
+    @Override
+    public void enqueue(T element) throws QueueOverflowException {
+        if (isFull()) {
+            throw new QueueOverflowException();
+        }
+        if (element != null) {
+            tail += 1;
+            array[tail] = element;
+        }
+    }
 
-	@Override
-	public T dequeue() throws QueueUnderflowException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
-	}
-
+    @Override
+    public T dequeue() throws QueueUnderflowException {
+        if (isEmpty()) {
+            throw new QueueUnderflowException();
+        }
+        T element = head();
+        shiftLeft();
+        tail -= 1;
+        return element;
+    }
 }
