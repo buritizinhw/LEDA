@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,9 +31,9 @@ public class StudentQueueTest {
 
 	private void getImplementations() {
 		// TODO O aluno deve ajustar aqui para instanciar sua implementação
-		queue1 = null;
-		queue2 = null;
-		queue3 = null;
+		queue1 = new QueueDoubleLinkedListImpl<Integer>(4);
+		queue2 = new QueueDoubleLinkedListImpl<Integer>(2);
+		queue3 = new QueueDoubleLinkedListImpl<Integer>(3);
 	}
 
 	// MÉTODOS DE TESTE
@@ -67,7 +66,7 @@ public class StudentQueueTest {
 	@Test(expected = QueueOverflowException.class)
 	public void testEnqueueComErro() throws QueueOverflowException {
 		queue1.enqueue(new Integer(5)); // vai depender do tamanho que a fila
-										// foi iniciada!!!
+		queue1.enqueue(new Integer(5));								// foi iniciada!!!
 	}
 
 	@Test
@@ -82,7 +81,7 @@ public class StudentQueueTest {
 
 	@Test(expected = QueueUnderflowException.class)
 	public void testDequeueComErro() throws QueueUnderflowException {
-		assertEquals(new Integer(1), queue1.dequeue()); // vai depender do
+		assertEquals(new Integer(1), queue3.dequeue()); // vai depender do
 														// tamanho que a fial
 														// foi iniciada!!!
 	}
