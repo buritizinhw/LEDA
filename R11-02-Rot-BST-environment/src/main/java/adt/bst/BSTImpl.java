@@ -1,4 +1,5 @@
 package adt.bst;
+import java.util.ArrayList;
 
 public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
@@ -49,35 +50,8 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public void insert(T element) {
-		if (this.isEmpty()) {
-			this.root = (BSTNode<T>) new BSTNode.Builder<T>()
-					.data(element)
-					.left(new BSTNode<T>())
-					.right(new BSTNode<T>())
-					.build();
-
-			this.root.getLeft().setParent(root);
-
-			this.root.getRight().setParent(root);
-		} else {
-			this.insert(root, element);
-		}
-
-	}
-
-	private void insert(BSTNode<T> node, T element) {
-		if (node.isEmpty()) {
-			node.setData(element);
-			node.setLeft(new BSTNode<T>());
-			node.getLeft().setParent(node);
-
-			node.setRight(new BSTNode<T>());
-			node.getRight().setParent(node);
-		} else if (element.compareTo(node.getData()) < 0) {
-			this.insert((BSTNode<T>) node.getLeft(), element);
-		} else {
-			this.insert((BSTNode<T>) node.getRight(), element);
-		}
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Not implemented yet!");
 	}
 
 	@Override
@@ -126,32 +100,65 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public T[] preOrder() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		ArrayList<T> result = new ArrayList<T>();
+
+		preOrder(this.root, result);
+
+		return (T[]) result.toArray(new Comparable[this.size()]);
+	}
+
+	private void preOrder(BSTNode current, ArrayList<T> list) {
+		if (!current.isEmpty()) {
+			list.add((T) current.getData());
+			preOrder((BSTNode<T>) current.getLeft(), list);
+			preOrder((BSTNode<T>) current.getRight(), list);
+		}
 	}
 
 	@Override
 	public T[] order() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		ArrayList<T> result = new ArrayList<T>();
+
+		order(this.root, result);
+
+		return (T[]) result.toArray(new Comparable[this.size()]);
+	}
+
+	private void order(BSTNode current, ArrayList<T> list) {
+		if (!current.isEmpty()) {
+			order((BSTNode<T>) current.getLeft(), list);
+			list.add((T) current.getData());
+			order((BSTNode<T>) current.getRight(), list);
+		}
 	}
 
 	@Override
 	public T[] postOrder() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		ArrayList<T> result = new ArrayList<T>();
+
+		postOrderRecursive(this.root, result);
+
+		return (T[]) result.toArray(new Comparable[this.size()]);
 	}
 
-	/**
+	private void postOrderRecursive(BSTNode current, ArrayList<T> list) {
+		if (!current.isEmpty()) {
+			postOrderRecursive((BSTNode<T>) current.getLeft(), list);
+			postOrderRecursive((BSTNode<T>) current.getRight(), list);
+			list.add((T) current.getData());
+		}
+	}
+
+/**
 	 * This method is already implemented using recursion. You must understand
 	 * how it work and use similar idea with the other methods.
 	 */
 	@Override
-	public int size() {
-		return size(root);
+	public int size(){
+		return sizeRecursive(root);
 	}
 
-	private int size(BSTNode<T> node) {
+	private int sizeRecursive(BSTNode<T> node) {
 		int result = 0;
 		// base case means doing nothing (return 0)
 		if (!node.isEmpty()) { // indusctive case
@@ -162,3 +169,4 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	}
 
 }
+
