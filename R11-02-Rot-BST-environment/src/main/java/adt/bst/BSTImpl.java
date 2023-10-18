@@ -1,4 +1,5 @@
 package adt.bst;
+
 import java.util.ArrayList;
 
 public class BSTImpl<T extends Comparable<T>> implements BST<T> {
@@ -23,7 +24,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		return heightRecursive(this.root);
 	}
 
-	private int heightRecursive(BSTNode<T> node){
+	private int heightRecursive(BSTNode<T> node) {
 		int result = -1;
 		if (!node.isEmpty()) {
 			result = 1 + Math.max(height((BSTNode<T>) node.getLeft()), height((BSTNode<T>) node.getRight()));
@@ -36,22 +37,41 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		return recursiveSearch(this.root, element);
 	}
 
-	private BSTNode<T> recursiveSearch(BSTNode<T> node, T element){
+	private BSTNode<T> recursiveSearch(BSTNode<T> node, T element) {
 		BSTNode<T> result = new BSTNode<T>();
-		if(element!=node.getData()){
-			if(element.compareTo(node.getData()) < 0){
+		if (element != node.getData()) {
+			if (element.compareTo(node.getData()) < 0) {
 				result = recursiveSearch((BSTNode<T>) node.getLeft(), element);
-			}else{
+			} else {
 				result = recursiveSearch((BSTNode<T>) node.getRight(), element);
+			}
 		}
-	}
 		return result;
 	}
 
 	@Override
 	public void insert(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		insertRecursive(this.root, element);
+	}
+
+	private void insertRecursive(BSTNode<T> node, T element) {
+		BSTNode<T> newNode = new BSTNode<T>();
+		if (this.root.isEmpty()) {
+			this.root = newNode(element);
+		}
+		if (element.compareTo(node.getData()) < 0) {
+			if (node.getLeft().isLeaf()) {
+				newNode = newNode(element);
+				node.setLeft(newNode);
+				newNode.setParent(node);
+			}
+		} else {
+			if (node.getRight().isLeaf()) {
+				newNode = newNode(element);
+				node.setRight(newNode);
+				newNode.setParent(node);
+			}
+		}
 	}
 
 	@Override
@@ -59,9 +79,9 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		return maximumRecursive(this.root);
 	}
 
-	private BSTNode<T> maximumRecursive(BSTNode<T> node){
+	private BSTNode<T> maximumRecursive(BSTNode<T> node) {
 		BSTNode<T> result = new BSTNode<T>();
-		if(!node.isLeaf()){
+		if (!node.isLeaf()) {
 			result = maximumRecursive((BSTNode<T>) node.getRight());
 		}
 		return result;
@@ -72,9 +92,9 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		return minimumRecursive(this.root);
 	}
 
-	private BSTNode<T> minimumRecursive(BSTNode<T> node){
+	private BSTNode<T> minimumRecursive(BSTNode<T> node) {
 		BSTNode<T> result = new BSTNode<T>();
-		if(!node.isLeaf()){
+		if (!node.isLeaf()) {
 			result = maximumRecursive((BSTNode<T>) node.getLeft());
 		}
 		return result;
@@ -149,12 +169,12 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		}
 	}
 
-/**
+	/**
 	 * This method is already implemented using recursion. You must understand
 	 * how it work and use similar idea with the other methods.
 	 */
 	@Override
-	public int size(){
+	public int size() {
 		return sizeRecursive(root);
 	}
 
@@ -169,4 +189,3 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	}
 
 }
-
