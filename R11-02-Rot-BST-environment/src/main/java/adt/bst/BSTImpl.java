@@ -77,7 +77,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		if(!node.isLeaf()){
 			result = maximumRecursive((BSTNode<T>) node.getLeft());
 		}
-		return node;
+		return result;
 	}
 
 	@Override
